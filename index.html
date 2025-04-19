@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9 to 5 Knockout</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body style="background: #4ff0e6;">
+  <div id="loading-overlay">
+    <canvas id="loading-canvas"></canvas>
+    <div class="loading-box">
+      <img id="logo-img" src="logo.png" alt="9-to-5 Knockout Logo">
+      <button id="join-btn">Join</button>
+
+    </div>
+  </div>
+
+  <div id="orientation-notice" style="display:none;">
+    <div class="notice-box">
+      <strong>Rotate your device</strong><br>
+      For the best experience, please rotate your screen to landscape.
+    </div>
+  </div>
+  <div id="score">Kills: 0</div>
+  <div id="mobile-controls" style="display:none;">
+    <div id="joystick"></div>
+    <button id="throw-btn" class="small-btn" aria-label="Throw">🛫</button>
+  </div>
+  <canvas id="game-canvas"></canvas>
+  <script>
+    // Resize canvas to always fill viewport
+    function resizeGameCanvas() {
+      const canvas = document.getElementById('game-canvas');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeGameCanvas);
+    window.addEventListener('orientationchange', resizeGameCanvas);
+    resizeGameCanvas();
+
+    // Mobile orientation detection
+    function checkOrientation() {
+      const notice = document.getElementById('orientation-notice');
+      const isPortrait = window.innerHeight > window.innerWidth && window.innerWidth < 800;
+      notice.style.display = isPortrait ? 'flex' : 'none';
+      document.getElementById('game-canvas').style.display = isPortrait ? 'none' : 'block';
+      document.getElementById('ui').style.display = isPortrait ? 'none' : 'block';
+      document.getElementById('mobile-controls').style.display = (isPortrait ? 'none' : 'flex');
+    }
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', checkOrientation);
+    window.addEventListener('DOMContentLoaded', checkOrientation);
+    checkOrientation();
+  </script>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+.small-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #ffe082;
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 16px #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  transition: background 0.15s, box-shadow 0.15s;
+  padding: 0;
+}
+.small-btn:active {
+  background: #ffb300;
+  box-shadow: 0 2px 8px #aaa;
+}
